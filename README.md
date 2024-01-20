@@ -1,81 +1,102 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-	<title>My Website</title>
-	<link rel="stylesheet" type="text/css" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clothing Design Website</title>
+    <style>
+        /* Add your CSS styles for the website layout and design here */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        header {
+            background-color: #333;
+            color: white;
+            padding: 10px;
+            text-align: center;
+        }
+
+        /* Add more styles for other sections as needed */
+    </style>
 </head>
 <body>
-	<header>
-		<img src="R.png" alt="Logo">
-		<div class="bird"></div>
-		<h1>Benny Magiq</h1>
-        <p>
-		<nav>
-			<ul>
-				<li><a href="index.html">Home</a></li>
-				<li><a href="Profile.html">My Profile</a></li>
-				<li><a href="AboutMe.html">About Me</a></li>
-				<li><a href="My Vision.html">My Vision</a></li>
-			</ul>
-		</nav>
-		
-        </p>
-	</header>
+    <header>
+        <h1>Clothing Design</h1>
+    </header>
 
-	<main>
-		<div class="vision">
-		<h2>Welcome to My Website!</h2>
-		
-		<p>Here you will find information about me, my interests, and my vision for the future.</p>
-
-		<p>Please feel free to explore the site and learn more about me. If you have any questions or comments, don't hesitate to contact me.</p>
-	</main>
-
-
-	<div class="container">
-
-        <div class="feature-box">
-
-            <img src="R (2).png" height="100" width="100" alt="Home">
-
-			<div class="vision">
-            <h2>Discover Our Services</h2>
-
-            <p>From professional services to great customer service, we have everything you need.</p>
-
-            <a href="index.html">Read More</a>
-
+    <section id="products">
+        <!-- Product listing goes here -->
+        <div class="product">
+            <img src="product1.jpg" alt="Product 1">
+            <h2>Product 1</h2>
+            <p>Description of Product 1.</p>
+            <p>$25.00</p>
+            <button onclick="addToCart(1)">Add to Cart</button>
         </div>
 
-        <div class="feature-box">
-
-            <img src="R(3).png" height="100" width="100" alt="About Me">
-			<div class="vision">
-            <h2>Discover My Personal Development</h2>
-
-            <p>Discover who I am, my mission and my qualities and skills.</p>
-
-            <a href="AboutMe.html">Know More</a>
-
+        <div class="product">
+            <img src="product2.jpg" alt="Product 2">
+            <h2>Product 2</h2>
+            <p>Description of Product 2.</p>
+            <p>$30.00</p>
+            <button onclick="addToCart(2)">Add to Cart</button>
         </div>
 
-        <div class="feature-box">
+        <!-- Add more products as needed -->
+    </section>
 
-            <img src="about-me-icon-png-6.png" height="100" width="100" alt="Profiel">
+    <section id="cart">
+        <h2>Shopping Cart</h2>
+        <ul id="cart-items">
+            <!-- Cart items will be dynamically added here using JavaScript -->
+        </ul>
+        <p>Total: $<span id="cart-total">0.00</span></p>
+        <button onclick="checkout()">Checkout</button>
+    </section>
 
-            <h2>Profiel</h2>
+    <script>
+        // Add your JavaScript code for interactivity here
+        let cart = [];
 
-            <p>Learn more about me</p>
+        function addToCart(productId) {
+            // Implement logic to add product to cart
+            // You can fetch product details from a server or use hardcoded values
+            let product = {
+                id: productId,
+                name: `Product ${productId}`,
+                price: productId === 1 ? 25.00 : 30.00,
+            };
 
-            <a href="Profile.html">Know More</a>
+            cart.push(product);
+            updateCart();
+        }
 
-        </div>
+        function updateCart() {
+            // Update the cart display
+            let cartItemsElement = document.getElementById('cart-items');
+            let cartTotalElement = document.getElementById('cart-total');
+            cartItemsElement.innerHTML = '';
 
-    </div>
-	<p><a href="#top">Back to Top</a></p>
+            let total = 0;
 
-	<footer>© 2023 Benny Magiq. All rights reserved.</footer>
-	
+            cart.forEach(item => {
+                let listItem = document.createElement('li');
+                listItem.textContent = `${item.name} - $${item.price.toFixed(2)}`;
+                cartItemsElement.appendChild(listItem);
+                total += item.price;
+            });
+
+            cartTotalElement.textContent = total.toFixed(2);
+        }
+
+        function checkout() {
+            // Implement checkout logic (e.g., send cart data to server for processing)
+            alert('Checkout functionality not implemented in this example.');
+        }
+    </script>
 </body>
 </html>
-
